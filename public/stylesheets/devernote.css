@@ -1,0 +1,17 @@
+html, body {
+	height: 100%;
+}
+
+.ui.button {
+	border-top-left-radius: 0;
+	border-bottom-left-radius: 0;
+}
+
+
+#markdown {
+	min-height: 100vh;
+}
+
+#rendered {
+	min-height: 100%;
+}
