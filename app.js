@@ -16,7 +16,8 @@ var express			= require("express"),
 	Note			= require("./models/note"),
 	Notebook		= require("./models/notebook");
 
-var	noteRoutes		= require("./routes/notes"),
+var	indexRoutes		= require("./routes/index"),
+	noteRoutes		= require("./routes/notes"),
 	notebookRoutes	= require("./routes/notebooks");
 
 mongoose.connect(process.env.DATABASE_URL || "mongodb://localhost/devernote");
@@ -46,6 +47,7 @@ app.use(function(req, res, next){
 //                   ROUTES                    //
 /////////////////////////////////////////////////
 
+app.use("/", indexRoutes);
 app.use("/notebooks", notebookRoutes);
 app.use("/notebooks/:id/notes", noteRoutes);
 

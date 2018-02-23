@@ -1,0 +1,59 @@
+<% include ./partials/header.ejs %>
+
+<div class="ui grid">
+	
+	<!-- Left Side -->
+	<div class="eight wide column">
+	
+	<form class="ui form" action="/notebooks/:notebook_id/notes" method="post">
+		<!-- Editor -->
+		<div class="fluid field">
+			<textarea id="markdown" name="note[text]" oninput="convertToHtml('markdown', 'rendered')">
+# Welcome to Devernote!
+Devernote is a markdown-based note-taking application created specifically for developers.
+
+I have had a love/hate relationship with Evernote since I started using it and this is response toa lot of the frustrations I have with it.
+
+## Evernote
+
+**Pros:**
+
+- Available anywhere
+- Connects with a lot of other websites and services
+- Looks nice
+
+**Cons:**
+
+- Formatting often breaks
+- Formatting text is a chore
+- No syntax highlighting for code blocks
+
+## Devernote
+
+Because Devernote uses markdown, it is incredibly quick to type clean, well-formatted notes without breaking away too much from what you are doing or learning.
+
+It is easy to create a [link](http://www.google.com) or embed images:
+
+![random image](https://picsum.photos/100/150/?random)
+![random image](https://picsum.photos/150/150/?random)
+![random image](https://picsum.photos/250/150/?random)
+
+## How was it made?
+
+It was created primarily using Node.js, Express and MongoDB as well as many other additional Node modules, notably Showdown for the markdown to html conversion and Highlight.js for the syntax highlighting.
+
+For further information and to take a look at the app, check out the [project on GitHub](https://github.com/polygami/devernote) or email me at [liam@polygami.co.uk](mailto:liam@polygami.co.uk).
+			
+			</textarea>
+		</div>
+		</form>
+	</div>
+	
+	<!-- Right Side -->
+	<div class="eight wide column">
+		<div id="rendered"></div>
+	</div>
+	
+</div>
+
+<% include ./partials/footer.ejs %>
