@@ -2,11 +2,10 @@ html, body {
 	height: 100%;
 }
 
-.ui.button {
+#sidebar-btn {
 	border-top-left-radius: 0;
 	border-bottom-left-radius: 0;
 }
-
 
 #markdown {
 	min-height: 100vh;
