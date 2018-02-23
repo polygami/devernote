@@ -13,9 +13,10 @@ $('.ui.buttons .button').on('click', function() {
 
 var converter = new showdown.Converter();
 
-function convertToHtml(obj, otherObj) {
-  var rendered = document.getElementById(otherObj);
-  if (rendered) {
-    rendered.innerHTML = converter.makeHtml(obj.value);
+function convertToHtml(markdownClass, renderedClass) {
+  var markdown = document.getElementById(markdownClass);
+  var rendered = document.getElementById(renderedClass);
+  if (rendered && markdown) {
+    rendered.innerHTML = converter.makeHtml(markdown.value);
   }
 }
