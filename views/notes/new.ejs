@@ -1,0 +1,49 @@
+<% include ../partials/header.ejs %>
+<div class="ui grid">
+	
+	<!-- Left Side -->
+	<div class="eight wide column">
+		<form class="ui form" action="/notebooks/:notebook_id/notes" method="post">
+			<div class="three fields">
+				
+				<!-- Title -->
+				<div class="ten wide field">
+					<div class="ui fluid icon input">
+						<input type="text" name="note[title]" placeholder="Title" required>
+					</div>
+				</div>
+				
+				<!-- Notebook -->
+				<div class="six wide field">
+					<select class="ui fluid dropdown" name="notebook_id">
+						<option selected disabled required>Notebook</option>
+						<% notebooks.forEach(function(notebook) { %>
+							<option value="<%= notebook._id %>"><%= notebook.name %></option>
+						<% }); %>
+					</select>
+				</div>
+				
+				<!-- Save Button -->
+				<div class="two wide field">
+					<button class="fluid ui green button" type="submit"><i class="save icon"></i></button>
+				</div>
+
+			</div>
+			
+			<!-- Editor -->
+			<div class="field">
+				<textarea id="markdown" name="note[text]" oninput="convertToHtml(this, 'rendered')"></textarea>
+			</div>
+			
+		</form>
+		
+	</div>
+	
+	<!-- Right Side -->
+	<div class="eight wide column">
+		<div id="rendered"></div>
+	</div>
+	
+</div>
+
+<% include ../partials/footer.ejs %>
