@@ -11,49 +11,55 @@
 </head>
 <body>
 	
+	<!-- Sidebar -->
 	<div class="ui sidebar inverted vertical  menu">
 		<div class="ui inverted accordion">
-			<!--  -->
-			<div class="title">
-				<i class="dropdown icon"></i>JavaScript Notes
-			</div>
-			<div class="content">
-				<div class="inverted menu">
-					<a class="item">
-						The DOM
-					</a> 
-					<a class="item">
-						Animation
-					</a>
-					<a class="item">
-						OOP
-					</a>
-					<a class="item">
-						Tricky Stuff
-					</a>
+			
+			<!-- New Notebook -->
+			<form action="/" method="POST">
+				<div class="ui mini fluid icon input">
+					<input type="text" name="notebook[name]" placeholder="New Notebook..." required>
+					<i class="plus square icon"></i>
 				</div>
-			</div>
-			<div class="title">
-				<i class="dropdown icon"></i>JavaScript Notes
-			</div>
-			<div class="content">
-				<div class="inverted menu">
-					<a class="item">
-						The DOM
-					</a>
-					<a class="item">
-						Animation
-					</a>
-					<a class="item">
-						OOP
-					</a>
-					<a class="item">
-						Tricky Stuff
-					</a>
-				</div>
-			</div>
+			</form>
+
+			<!-- Populate Notebook Menu -->
+			<% if (notebooks) {
+				notebooks.forEach(function(notebook) { %>
+
+					<!-- Notbook Title -->
+					<div class="title">
+						<i class="dropdown icon"></i><%= notebook.name %>
+					</div>
+					
+					<!-- Notebook Content -->
+					<div class="content">
+						<div class="inverted menu">
+
+							<!-- Note -->
+							<% notebook.notes.forEach(function(note) { %>
+								<a class="item" href="/notebooks/<%= notebook._id %>/notes/<%= note.id %>">
+									<%= note.title %>
+								</a> 
+							<% }); %>
+								
+							<!-- New Note -->
+							<a class="item" href="/notebooks/<%= notebook._id %>/notes/new">
+								<i class="plus square icon"></i>
+								<div class="content">
+									...New Item
+								</div>
+							</a>
+
+						</div>
+					</div>
+
+				<% }); 
+			}%>
+			
 		</div>
 	</div>
+	<!-- Pusher -->
 	<div class="pusher dimmed">
 		<button class="ui black icon button" id="sidebar-btn">
 			<i class="book icon"></i>
