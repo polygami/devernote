@@ -11,8 +11,13 @@ var express			= require("express"),
 	mongoose		= require("mongoose"),
 	methodOverride 	= require("method-override"),
 	path			= require("path");
+	hljs			= require("highlight.js"),
+	showdown		= require("showdown"),
+	Note			= require("./models/note"),
+	Notebook		= require("./models/notebook");
 
-var indexRoutes		= require("./routes/index"); 
+var	noteRoutes		= require("./routes/notes"),
+	notebookRoutes	= require("./routes/notebooks");
 
 mongoose.connect(process.env.DATABASE_URL || "mongodb://localhost/devernote");
 app.set("view engine", "ejs");
@@ -22,13 +27,27 @@ app.use(methodOverride("_method"));
 app.use(favicon(path.join(__dirname, "public", "images", "favicon.ico")));
 
 /////////////////////////////////////////////////
+//                 MIDDLEWARE                  //
+/////////////////////////////////////////////////
+
+app.use(function(req, res, next){
+	Notebook.find({}, function(err, notebooks) {
+		if (err) {
+			console.log(err);
+			next();
+		} else {
+			app.locals.notebooks = notebooks;
+			next();
+		}
+	})
+});
+
+/////////////////////////////////////////////////
 //                   ROUTES                    //
 /////////////////////////////////////////////////
 
-// Root (landing page)d
-app.get("/", function(req, res){
-    res.render("index");
-});
+app.use("/notebooks", notebookRoutes);
+app.use("/notebooks/:id/notes", noteRoutes);
 
 /////////////////////////////////////////////////
 //                   SERVER                    //
