@@ -15,8 +15,7 @@
 				
 				<!-- Notebook -->
 				<div class="six wide field">
-					<select class="ui fluid dropdown" name="notebook_id">
-						<option selected disabled required>Notebook</option>
+					<select class="ui fluid dropdown required" name="notebook_id">
 						<% notebooks.forEach(function(notebook) { %>
 							<option value="<%= notebook._id %>"><%= notebook.name %></option>
 						<% }); %>
