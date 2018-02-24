@@ -3,7 +3,7 @@
 /////////////////////////////////////////////////
 
 var express = require("express");
-var router = express.Router();
+var router = express.Router({mergeParams: true}); // mergeParams makes the params accessible
 
 /////////////////////////////////////////////////
 //                   ROUTES                    //
