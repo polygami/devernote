@@ -6,13 +6,14 @@
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<title>Devernote</title>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.14/semantic.min.css"/>
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/railscasts.min.css">
+	<!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.11.0/themes/prism-coy.min.css">-->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.11.0/themes/prism-twilight.min.css">
 	<link rel="stylesheet" href="/stylesheets/devernote.css">
 </head>
 <body onload="convertToHtml('markdown', 'rendered')">
 	
 	<!-- Sidebar -->
-	<div class="ui sidebar inverted vertical  menu">
+	<div class="ui sidebar inverted vertical menu left uncover visible">
 		<div class="ui inverted accordion">
 			
 			<!-- New Notebook -->
@@ -39,7 +40,7 @@
 							<!-- Note -->
 							<% notebook.notes.forEach(function(note) { %>
 								<a class="item" href="/notebooks/<%= notebook._id %>/notes/<%= note.id %>">
-									<%= note.title %>
+								<%= note.title %>
 								</a> 
 							<% }); %>
 								
