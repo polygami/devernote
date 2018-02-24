@@ -6,7 +6,7 @@
     <div id="rendered">
       <div id="options">
         <button class="ui compact icon button red right floated" onclick="showMessageBox()"><i class="delete icon"></i></button>
-        <button class="ui  compact icon button green right floated"><i class="edit icon"></i></button>
+        <a href="/notebooks/<%= notebook_id %>/notes/<%= note._id %>/edit"><button class="ui  compact icon button green right floated"><i class="edit icon"></i></button></a>
         <button class="ui  compact icon button teal right floated"><i class="download icon"></i></button>
       </div>
       <div id="message-box-container">

@@ -54,6 +54,29 @@ router.post("/", function(req, res) {
 	});
 });
 
+// EDIT
+router.get("/:note_id/edit", function(req, res) {
+	Note.findById(req.params.note_id, function(err, note) {
+		if(err){
+			res.redirect("back");
+		} else {
+			res.render("notes/edit", {note: note, notebook_id: req.params.notebook_id})
+		}
+	});
+});
+
+// UPDATE
+
+router.put("/:note_id", function(req, res) {
+	Note.findByIdAndUpdate(req.params.note_id, req.body.note, function(err, note) {
+		if(err){
+			res.redirect("back");
+		} else {
+			res.redirect("/notebooks/" + req.body.notebook_id + "/notes/" + note._id);
+		}
+	});
+});
+
 // DESTROY
 router.delete("/:note_id", function(req, res) {
 	Note.findByIdAndRemove(req.params.note_id, function (err, note) {

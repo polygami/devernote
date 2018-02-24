@@ -1,0 +1,41 @@
+<% include ../partials/header.ejs %>
+<div class="ui grid">
+	
+	<!-- Left Side -->
+	<div class="eight wide column">
+		<form class="ui form" action="/notebooks/<%= notebook_id %>/notes/<%= note._id %>?_method=PUT" method="post">
+			<div class="three fields">
+				
+				<!-- Title -->
+				<div class="sixteen wide field">
+					<div class="ui fluid icon input">
+						<input type="text" name="note[title]" placeholder="Title" value="<%= note.title %>" required>
+					</div>
+				</div>
+				
+				<!-- Notebook needs to be put in once data structure is fixed -->
+				
+				<!-- Save Button -->
+				<div class="two wide field">
+					<button class="fluid ui green button" type="submit"><i class="save icon"></i></button>
+				</div>
+
+			</div>
+			
+			<!-- Editor -->
+			<div class="field">
+				<textarea id="markdown" name="note[text]" oninput="convertToHtml('markdown', 'rendered')"><%= note.text %></textarea>
+			</div>
+			
+		</form>
+		
+	</div>
+	
+	<!-- Right Side -->
+	<div class="eight wide column">
+		<div id="rendered"></div>
+	</div>
+	
+</div>
+
+<% include ../partials/footer.ejs %>
