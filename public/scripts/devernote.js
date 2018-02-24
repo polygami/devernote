@@ -20,3 +20,11 @@ function convertToHtml(markdownClass, renderedClass) {
     rendered.innerHTML = converter.makeHtml(markdown.value);
   }
 }
+
+function showMessageBox() {
+  document.getElementById("message-box-container").style.display = "block";
+}
+
+function hideMessageBox() {
+  document.getElementById("message-box-container").style.display = "none";
+}

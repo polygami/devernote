@@ -1,12 +1,35 @@
 <% include ../partials/header.ejs %>
 
-<div class="ui middle aligned  container">
-  <div class="row">
+<div class="ui middle aligned container">
+  
+  <div class="row"></div>
     <div id="rendered">
-			<%- html %>
-		</div>
+      <div id="options">
+        <button class="ui compact icon button red right floated" onclick="showMessageBox()"><i class="delete icon"></i></button>
+        <button class="ui  compact icon button green right floated"><i class="edit icon"></i></button>
+        <button class="ui  compact icon button teal right floated"><i class="download icon"></i></button>
+      </div>
+      <div id="message-box-container">
+        <div class="ui center inverted aligned segment">
+            <div class="sixteen wide column"><h2>Are you sure?</h2></div>
+
+          
+          <form class="ui form centre aligned" action="/notebooks/<%= notebook_id %>/notes/<%= note._id %>?_method=DELETE" method="POST">
+            <div class="two fields">
+              <button class="ui field button green">Yes</button>
+              <div class="ui field button red" onclick="hideMessageBox()">No</div>
+
+
+            </div>
+         
+          </form>
+        </div>
+      </div>
+      <%- html %>
+    </div>  
   </div>
-</div>
-
-
-<% include ../partials/footer.ejs %>
+  
+  <% console.log("notebook_id = " + notebook_id) %>
+  
+  <% include ../partials/footer.ejs %>
+  
